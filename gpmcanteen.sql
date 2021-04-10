@@ -1,26 +1,25 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
--- http://www.phpmyadmin.net
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 22, 2018 at 05:28 PM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.16
+-- Host: 127.0.0.1
+-- Generation Time: Apr 10, 2021 at 11:13 AM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `gpmcanteen`
 --
-CREATE DATABASE IF NOT EXISTS `gpmcanteen` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `gpmcanteen`;
 
 -- --------------------------------------------------------
 
@@ -28,20 +27,12 @@ USE `gpmcanteen`;
 -- Table structure for table `admin`
 --
 
-CREATE TABLE IF NOT EXISTS `admin` (
+CREATE TABLE `admin` (
   `name` varchar(50) NOT NULL,
   `admin_id` varchar(20) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `mob` decimal(10,0) NOT NULL,
-  PRIMARY KEY (`admin_id`)
+  `mob` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`name`, `admin_id`, `password`, `mob`) VALUES
-('Mr. Admin', 'admin', 'qwerty', '8691880133');
 
 -- --------------------------------------------------------
 
@@ -49,7 +40,7 @@ INSERT INTO `admin` (`name`, `admin_id`, `password`, `mob`) VALUES
 -- Table structure for table `booking`
 --
 
-CREATE TABLE IF NOT EXISTS `booking` (
+CREATE TABLE `booking` (
   `status` varchar(100) NOT NULL DEFAULT 'order placed',
   `fn1` varchar(100) NOT NULL,
   `fn2` varchar(100) NOT NULL,
@@ -76,10 +67,8 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `uid` varchar(100) NOT NULL,
   `date` varchar(100) NOT NULL,
   `time` varchar(100) NOT NULL,
-  `bid` int(100) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`bid`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+  `bid` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `booking`
@@ -102,7 +91,7 @@ INSERT INTO `booking` (`status`, `fn1`, `fn2`, `fn3`, `fn4`, `fn5`, `qt1`, `qt2`
 -- Table structure for table `bookingchef`
 --
 
-CREATE TABLE IF NOT EXISTS `bookingchef` (
+CREATE TABLE `bookingchef` (
   `status` varchar(100) NOT NULL DEFAULT 'order placed',
   `fn1` varchar(100) NOT NULL,
   `fn2` varchar(100) NOT NULL,
@@ -129,10 +118,8 @@ CREATE TABLE IF NOT EXISTS `bookingchef` (
   `uid` varchar(100) NOT NULL,
   `date` varchar(100) NOT NULL,
   `time` varchar(100) NOT NULL,
-  `bid` int(100) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`bid`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+  `bid` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bookingchef`
@@ -147,12 +134,11 @@ INSERT INTO `bookingchef` (`status`, `fn1`, `fn2`, `fn3`, `fn4`, `fn5`, `qt1`, `
 -- Table structure for table `category`
 --
 
-CREATE TABLE IF NOT EXISTS `category` (
-  `cat_id` int(3) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `category` (
+  `cat_id` int(3) NOT NULL,
   `cat_name` varchar(20) NOT NULL,
-  `status` varchar(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`cat_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `status` varchar(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category`
@@ -170,7 +156,7 @@ INSERT INTO `category` (`cat_id`, `cat_name`, `status`) VALUES
 -- Table structure for table `chef_details`
 --
 
-CREATE TABLE IF NOT EXISTS `chef_details` (
+CREATE TABLE `chef_details` (
   `chef_name` varchar(50) NOT NULL,
   `chef_id` varchar(20) NOT NULL,
   `password` varchar(32) NOT NULL,
@@ -190,15 +176,14 @@ INSERT INTO `chef_details` (`chef_name`, `chef_id`, `password`, `mob`) VALUES
 -- Table structure for table `menu`
 --
 
-CREATE TABLE IF NOT EXISTS `menu` (
-  `f_id` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `menu` (
+  `f_id` int(5) NOT NULL,
   `f_name` varchar(50) NOT NULL,
   `price` int(3) NOT NULL,
   `category` varchar(30) NOT NULL,
   `img` varchar(100) NOT NULL,
-  `status` varchar(100) NOT NULL DEFAULT 'available',
-  PRIMARY KEY (`f_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+  `status` varchar(100) NOT NULL DEFAULT 'available'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `menu`
@@ -218,15 +203,14 @@ INSERT INTO `menu` (`f_id`, `f_name`, `price`, `category`, `img`, `status`) VALU
 -- Table structure for table `product`
 --
 
-CREATE TABLE IF NOT EXISTS `product` (
-  `pr_id` int(3) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `product` (
+  `pr_id` int(3) NOT NULL,
   `pr_name` varchar(20) NOT NULL,
   `pr_rate` varchar(3) NOT NULL,
   `pr_qty` varchar(3) NOT NULL,
   `cat_id` int(3) NOT NULL,
-  `minimum` varchar(100) NOT NULL DEFAULT '100',
-  PRIMARY KEY (`pr_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `minimum` varchar(100) NOT NULL DEFAULT '100'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product`
@@ -242,13 +226,12 @@ INSERT INTO `product` (`pr_id`, `pr_name`, `pr_rate`, `pr_qty`, `cat_id`, `minim
 -- Table structure for table `staff`
 --
 
-CREATE TABLE IF NOT EXISTS `staff` (
+CREATE TABLE `staff` (
   `s_id` int(4) NOT NULL,
   `s_name` varchar(50) NOT NULL,
   `mob` decimal(10,0) NOT NULL,
   `s_userid` varchar(20) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  PRIMARY KEY (`s_userid`)
+  `password` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -275,7 +258,7 @@ INSERT INTO `staff` (`s_id`, `s_name`, `mob`, `s_userid`, `password`) VALUES
 -- Table structure for table `stockmanager_details`
 --
 
-CREATE TABLE IF NOT EXISTS `stockmanager_details` (
+CREATE TABLE `stockmanager_details` (
   `name` varchar(50) NOT NULL,
   `stock_id` varchar(20) NOT NULL,
   `password` varchar(32) NOT NULL,
@@ -288,6 +271,89 @@ CREATE TABLE IF NOT EXISTS `stockmanager_details` (
 
 INSERT INTO `stockmanager_details` (`name`, `stock_id`, `password`, `mob`) VALUES
 ('Mr Stock Manager', 'stock', 'stock123', '9896542346');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`bid`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `bookingchef`
+--
+ALTER TABLE `bookingchef`
+  ADD PRIMARY KEY (`bid`),
+  ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`cat_id`);
+
+--
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`f_id`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`pr_id`);
+
+--
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`s_userid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `bid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `bookingchef`
+--
+ALTER TABLE `bookingchef`
+  MODIFY `bid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `cat_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `f_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `pr_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
